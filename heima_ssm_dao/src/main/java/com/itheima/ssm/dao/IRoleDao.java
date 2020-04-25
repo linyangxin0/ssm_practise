@@ -1,10 +1,7 @@
 package com.itheima.ssm.dao;
 
 import com.itheima.ssm.domain.Role;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -18,4 +15,11 @@ public interface IRoleDao {
             @Result(property = "permissions",column = "id",javaType = java.util.List.class,many = @Many(select = "com.itheima.ssm.dao.IPermissionDao.findPermissionByRoleId")),
     })
     public List<Role> findRoleByUserId(String userId);
+
+
+    @Select("select * from role")
+    public List<Role> findAll() throws Exception;
+
+    @Insert("insert into role(roleName,roleDesc) values (#{roleName},#{roleDesc})")
+    public void save(Role role);
 }

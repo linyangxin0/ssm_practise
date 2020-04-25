@@ -1,7 +1,6 @@
 package com.itheima.ssm.service;
 
 import com.itheima.ssm.domain.UserInfo;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
