@@ -18,11 +18,17 @@ public class PermissionController {
 
 
     @RequestMapping("/findAll.do")
-    public ModelAndView findAll(){
+    public ModelAndView findAll() throws Exception {
         ModelAndView mv = new ModelAndView();
         List<Permission> permissionList = permissionService.findAll();
         mv.addObject("permissionList",permissionList);
         mv.setViewName("permission-list");
         return mv;
+    }
+
+    @RequestMapping("/save.do")
+    public String save(Permission permission) throws Exception {
+        permissionService.save(permission);
+        return "redirect:findAll.do";
     }
 }

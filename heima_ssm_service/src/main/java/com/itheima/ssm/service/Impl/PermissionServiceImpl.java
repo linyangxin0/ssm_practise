@@ -18,7 +18,12 @@ public class PermissionServiceImpl implements IPermissionService {
     private IPermissionDao permissionDao;
 
     @Override
-    public List<Permission> findAll() {
+    public List<Permission> findAll() throws Exception{
         return permissionDao.findAll();
+    }
+
+    @Override
+    public void save(Permission permission) throws Exception{
+        permissionDao.save(permission);
     }
 }
