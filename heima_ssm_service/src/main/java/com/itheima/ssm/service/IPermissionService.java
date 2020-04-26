@@ -10,4 +10,8 @@ public interface IPermissionService {
 
 
     public void save(Permission permission) throws Exception;
+
+    Permission findById(String id) throws Exception;
+
+    void deleteById(String id) throws Exception;
 }
