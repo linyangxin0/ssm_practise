@@ -1,5 +1,6 @@
 package com.itheima.ssm.dao;
 
+import com.itheima.ssm.domain.Role;
 import com.itheima.ssm.domain.UserInfo;
 import org.apache.ibatis.annotations.*;
 import org.springframework.security.core.userdetails.User;
@@ -40,4 +41,12 @@ public interface IUserDao {
             @Result(property = "roles",column = "id",javaType = java.util.List.class,many = @Many(select = "com.itheima.ssm.dao.IRoleDao.findRoleByUserId")),
     })
     public UserInfo findById(String id) throws Exception;
+
+
+    @Select("select * from role where id not in (select roleId from users_role where userId=#{userId})")
+    public List<Role> findOtherRole(String userId);
+
+
+    @Insert("insert into users_role(userId,roleId) values(#{userId},#{roleId})")
+    void addRoleToUser(@Param("userId") String userId, @Param("roleId") String roleId);
 }
